@@ -38,23 +38,47 @@
         默认匹配的值很可能不一样
         instance没有axios后面添加的一引起方法: create()/CancelToken()/all()
 
-### 4). axios的请求/响应拦截器是什么?
+### 4). axios运行的整体流程
+### 5). Axios.prototype.request()都做了什么?
+### 6). dispatchrequest()都做了什么?
+### 7). xhrAdapter()做了什么?
+    整体流程: request(config)  ===> dispatchRequest(config) ===> xhrAdapter(config)
+    request(config): 将请求拦截器 / dispatchRequest() / 响应拦截器 通过promise链串连起来, 依次执行. 返回promise
+    dispatchRequest(config): 转换请求数据 ===> 调用xhrAdapter()发请求 ===> 请求返回后转换响应数据. 返回promise
+    xhrAdapter(config): 创建XHR对象, 根据config进行相应设置, 发送特定请求, 并接收响应数据, 返回promise 
 
-### 5). axios的请求/响应数据转换器是什么?
+### 8). axios的请求/响应拦截器是什么?
+    请求拦截器: 在真正发请求前, 可以对请求进行检查或配置进行特定处理的函数, 包括成功/失败的函数, 传递的必须是config
+    响应拦截器: 在请求返回后, 可以对响应数据进行特定处理的函数, 包括成功/失败的函数, 传递的默认是response
 
-### 6). response的整体结构
+### 9). axios的请求/响应数据转换器是什么?
+    请求转换器: 对请求头和请求体数据进行特定处理的函数
+        setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+        return JSON.stringify(data)
+    响应转换器: 将响应体json字符串解析为js对象或数组的函数
+    
+### 10). response的整体结构
+    {
+        data,
+        status,
+        statusText,
+        headers,
+        config,
+        request
+    }
 
-### 7). error的整体结构
+### 11). error的整体结构
+    {
+        message,
+        code,
+        request,
+        response
+    }
 
-### 8). axios运行的整体流程
+### 12). config是如何起作用的?
+    通过拦截器后传递给xhrAdapter(config), 内部利用config, 对XHR对象发请求进行相应的设置
 
-### 9). config是如何起作用的?
-
-### 10). Axios.prototype.request()都做了什么?
-
-### 11). dispatchrequest()都做了什么?
-
-### 12). 如何取消已经发送的请求?
+### 13). 如何取消已经发送的请求?
 
 
 
