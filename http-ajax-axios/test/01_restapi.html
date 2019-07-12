@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rest api 测试</title>
+</head>
+<body>
+  
+<script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+<script>
+  // 30分钟内不再发预检请求
+  axios.defaults.headers["Access-Control-Max-Age"] = "1800000" // 30
+  
+
+  /* 1. GET请求: 从服务器端获取数据*/
+  function testGet() {
+    // axios.get('http://localhost:3000/posts') // 获取所有posts的数组
+    // axios.get('http://localhost:3000/posts/1') // 获取id为1的对象
+    // axios.get('http://localhost:3000/posts?id=1&id=2') // 获取id为1或2的数组
+    // axios.get('http://localhost:3000/posts?title=json-server&author=typicode')
+  }
+  testGet()
+
+  /* 2. POST请求: 向服务器端添加新数据*/
+  function testPost() {
+    // axios.post('http://localhost:3000/comments', {body: 'xxx', postId: 1}) // 保存数据
+  }
+  testPost()
+
+  /* 3. PUT请求: 更新服务器端已经数据 */
+  function testPut() {
+    // axios.put('http://localhost:3000/comments/6', {body: 'yyy', postId: 1})
+  }
+  testPut()
+  
+  /* 4. DELETE请求: 删除服务器端数据 */
+  function testDelete() {
+    axios.delete('http://localhost:3000/comments/4')
+  }
+  testDelete()
+  
+</script>
+</body>
+</html>
