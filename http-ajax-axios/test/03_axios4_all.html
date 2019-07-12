@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="getProducts()">获取商品列表1和2</button><br>
+  <button onclick="cancelReq()">取消请求</button><br>
+
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+  <script>
+   
+   axios.defaults.baseURL = 'http://localhost:4000'
+
+    function getProducts() {
+
+      axios.all([axios('/products1'), axios('/products2')])
+      .then(axios.spread(function ( response1, response2 ) {
+        console.log(response1.data, response2.data)
+      }));
+    }
+
+  </script>
+</body>
+</html>

@@ -13,17 +13,19 @@ var defaults = require('./defaults');
  * @return {Axios} A new instance of Axios
  */
 function createInstance(defaultConfig) {
+  // 创建Axios的实例
   var context = new Axios(defaultConfig);
-  var instance = bind(Axios.prototype.request, context);
+  // Axios.prototype.request.bind(context)
+  var instance = bind(Axios.prototype.request, context); // axios
 
   // Copy axios.prototype to instance
-  utils.extend(instance, Axios.prototype, context);
+  utils.extend(instance, Axios.prototype, context); // axios有了request()/get()/post()/put()/delete()
 
   // Copy context to instance
-  utils.extend(instance, context);
+  utils.extend(instance, context); // axios有了defaults和interceptors属性
 
   return instance;
-}
+} // axios()
 
 // Create the default instance to be exported
 var axios = createInstance(defaults);
