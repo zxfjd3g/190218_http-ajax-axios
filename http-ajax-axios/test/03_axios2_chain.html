@@ -12,24 +12,24 @@
 <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
 <script>
   /* 
-  1. axios.create(config): 返回一个请求功能与axios基本一样的函数
-      instance(config): 发任意类型的请求
-      instance.xxx(): 发xxx类型的请求
-  2. 拦截器函数/ajax请求/请求的回调函数的调用顺序
+  拦截器函数/ajax请求/请求的回调函数的调用顺序
       说明: 调用axios()并不是立即发送ajax请求, 而是需要经历一个较长的流程
       流程: 请求拦截器2 => 请求拦截器1 => 发ajax请求 => 响应拦截器1 => 响应拦截器2 => 请求的回调
   */
   const instance = axios.create({
     baseURL: 'http://localhost:3000'
   })
+
   instance.interceptors.request.use(config => {
     console.log('request interceptor1')
     return config
   })
+
   instance.interceptors.request.use(config => {
     console.log('request interceptor2')
     return config
   })
+
   instance.interceptors.response.use(response => {
     console.log('response interceptor1')
     return response

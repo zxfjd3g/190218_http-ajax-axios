@@ -21,6 +21,7 @@
     axios.delete(url[, config]): 发delete请求
     axios.post(url[, data, config]): 发post请求
     axios.put(url[, data, config]): 发put请求
+    
     axios.defaults.xxx: 请求的默认全局配置
     axios.interceptors.request.use(): 添加请求拦截器
     axios.interceptors.response.use(): 添加响应拦截器

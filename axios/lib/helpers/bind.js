@@ -1,5 +1,7 @@
 'use strict';
-
+/* 
+绑定函数的this
+*/
 module.exports = function bind(fn, thisArg) {
   return function wrap() {
     var args = new Array(arguments.length);

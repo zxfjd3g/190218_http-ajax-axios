@@ -14,6 +14,8 @@ function encode(val) {
 }
 
 /**
+ * 构建一个带参数的url
+ * 
  * Build a URL by appending params to the end
  *
  * @param {string} url The base of the url (e.g., http://www.google.com)
